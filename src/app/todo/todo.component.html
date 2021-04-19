@@ -1,0 +1,28 @@
+<br/>
+<div class="container">
+  <h3>To-Do App</h3>
+  <br/>
+    <div class="jumbotron">
+        <form #frm="ngForm" (ngSubmit)="addTodo(frm); frm.reset()">
+            <div class="form-group">
+              <input type="text" class="form-control" name="text" ngModel #nameUser="ngModel" >
+            </div>
+            <input type="submit" value="Add Todo" name="button" class="btn btn-primary" >
+        </form>
+    </div>
+    <br/>
+    <table class="table table-borderless table-hover">
+      <tbody>
+        <tr  *ngFor="let todo of todoListNotChecked">
+         <td>{{todo.text}}</td>
+         <td><button class="btn btn-success" (click)="toggleComplete(todo.id)">Mark Complete</button></td>
+         <td><button class="btn btn-danger" (click)="removeTodo(todo.id)">Delete</button></td>
+        </tr>
+        <tr  *ngFor="let todo of todoListChecked">
+          <td><del>{{todo.text}}</del></td>
+          <td><button class="btn btn-dark" (click)="toggleComplete(todo.id)">Mark Incomplete</button></td>
+          <td><button class="btn btn-danger" (click)="removeTodo(todo.id)">Delete</button></td>
+        </tr>
+      </tbody>
+    </table>
+</div>
